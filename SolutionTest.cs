@@ -22,5 +22,14 @@ namespace leetcode
 
             Assert.AreEqual(ret, 4);
         }
+
+        [Test]
+        public void Test_Complex()
+        {
+            var solution = new Solution();
+            var ret = solution.LengthOfLongestSubstring("axwabcdefgahij");
+
+            Assert.AreEqual(ret, 10);
+        }
     }
 }

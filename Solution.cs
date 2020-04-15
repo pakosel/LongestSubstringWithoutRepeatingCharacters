@@ -6,41 +6,27 @@ namespace leetcode
     {
         public int LengthOfLongestSubstring(string s)
         {
-            int maxLength = 0;
-            var strLen = s.Length;
-            for (int i = 0; i < strLen; i++)
-            {
-                var currentMax = FindLongest(s, i, out var reachedEnd);
-                if (currentMax > maxLength)
-                    maxLength = currentMax;
-                if (reachedEnd)
-                    break;
-                if (maxLength > strLen - i)
-                    break;
-            }
-            return maxLength;
-        }
+            int length = s.Length, ans = 0;
+            int start = 0;
 
-        private int FindLongest(string s, int startingPos, out bool reachedEnd)
-        {
-            HashSet<char> visited = new HashSet<char>();
-            reachedEnd = true;
-            int maxLen = 0;
-            for (int i = startingPos; i < s.Length; i++)
+            Dictionary<char, int> map = new Dictionary<char, int>();
+
+            for (int i = 0; i < length; i++)
             {
-                var currChar = s[i];
-                if (!visited.Contains(currChar))
+                if (map.ContainsKey(s[i]))
                 {
-                    visited.Add(currChar);
-                    maxLen++;
+                    if (map[s[i]] >= start)
+                    {
+                        start = map[s[i]];
+                    }
                 }
-                else
-                {
-                    reachedEnd = false;
-                    break;
-                }
+
+                ans = System.Math.Max(ans, i - start + 1);
+                map[s[i]] = i + 1;
             }
-            return maxLen;
+            return ans;
         }
     }
+
+
 }
