@@ -20,7 +20,7 @@ namespace leetcode
             var solution = new Solution();
             var ret = solution.LengthOfLongestSubstring("abcddcba");
 
-            Assert.AreEqual(ret, 3);
+            Assert.AreEqual(ret, 4);
         }
     }
 }
