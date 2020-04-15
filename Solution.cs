@@ -10,7 +10,7 @@ namespace leetcode
             var strLen = s.Length;
             for (int i = 0; i < strLen; i++)
             {
-                var currentMax = FindLongest(s.Substring(i), out var reachedEnd);
+                var currentMax = FindLongest(s, i, out var reachedEnd);
                 if (currentMax > maxLength)
                     maxLength = currentMax;
                 if (reachedEnd)
@@ -21,12 +21,12 @@ namespace leetcode
             return maxLength;
         }
 
-        private int FindLongest(string s, out bool reachedEnd)
+        private int FindLongest(string s, int startingPos, out bool reachedEnd)
         {
             HashSet<char> visited = new HashSet<char>();
             reachedEnd = true;
             int maxLen = 0;
-            for (int i = 0; i < s.Length; i++)
+            for (int i = startingPos; i < s.Length; i++)
             {
                 var currChar = s[i];
                 if (!visited.Contains(currChar))
